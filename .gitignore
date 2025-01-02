@@ -35,3 +35,4 @@ ENV/
 .env
 run_results/*
 !run_results/.gitkeep 
+.DS_Store
