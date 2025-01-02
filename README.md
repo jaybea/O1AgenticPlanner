@@ -15,8 +15,8 @@ This project is designed to help developers learn:
 ## 🚀 Getting Started
 
 1. Clone the repository
-git clone https://github.com/yourusername/order-fulfillment-ai.git
-cd order-fulfillment-ai
+git clone https://github.com/jaybea/O1AgenticPlanner.git
+cd src/order_fulfillment
 
 
 2. Create and activate a virtual environment
@@ -52,17 +52,12 @@ Edit .env with your OpenAI API key
 ## 📊 Available Scenarios
 - **Basic Fulfillment**: Process orders with standard inventory management
 - **Low Inventory**: Handle orders when stock is limited
-- **Supplier Optimization**: Choose optimal supplier based on costs and constraints
+- **Supplier Optimization**: Choose the optimal supplier based on costs and constraints
 
 ## 🔄 Available Contexts
 - **Default**: Standard operating conditions
 - **Low Inventory**: Limited stock levels
 - **High Capacity**: Increased warehouse processing capacity
-
-## 📖 Documentation
-See the [docs](docs/) directory for detailed documentation:
-- [API Documentation](docs/API.md)
-- [Function Registry](docs/function_registry.md)
 
 ## 🤝 Contributing
 This is an educational project and contributions that help make it more educational are welcome! Please feel free to:
@@ -77,17 +72,3 @@ This is an educational project and should not be used in production environments
 
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📁 Project Structure
-order-fulfillment-ai/
-├── src/prototype/order_fulfillment/
-│ ├── config.py # Model and prompt configurations
-│ ├── context.py # Context management
-│ ├── executor.py # Execution engine
-│ ├── functions.py # Business functions
-│ ├── plans.py # Plan management
-│ ├── scenarios.py # Scenario definitions
-│ └── utils.py # Utilities
-├── run_results/
-│ ├── plans/ # Stored plans
-│ └── fulfillment_runs/ # Execution logs
