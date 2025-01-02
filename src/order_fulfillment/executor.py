@@ -48,7 +48,57 @@ class PolicyExecutor:
             'message': f'Before the plan is executed, here is the current context:\n{json.dumps(self.context, indent=4)}'
         }, output, self.message_list)
 
-        # ... rest of execute_plan implementation ...
+        while True:
+            response = self.client.chat.completions.create(
+                model=executor_config['model'],
+                messages=messages,
+                tools=self.tools,
+                tool_choice="auto"
+            )
+            
+            response_message = response.choices[0].message
+            messages.append({"role": "assistant", "content": response_message.content})
+            
+            # Check if there's a function call
+            if response_message.tool_calls:
+                for tool_call in response_message.tool_calls:
+                    function_name = tool_call.function.name
+                    
+                    # Check if processing is complete
+                    if function_name == 'processing_complete':
+                        return self.message_list
+                        
+                    function_args = json.loads(tool_call.function.arguments)
+                    
+                    # Log the function call
+                    append_message({
+                        'type': 'function_call',
+                        'function': function_name,
+                        'args': function_args
+                    }, output, self.message_list)
+                    
+                    # Execute the function
+                    function_to_call = self.function_mapping[function_name]
+                    function_response = function_to_call(**function_args)
+                    
+                    # Log the response
+                    append_message({
+                        'type': 'function_response',
+                        'function': function_name,
+                        'response': function_response
+                    }, output, self.message_list)
+                    
+                    messages.append({
+                        "role": "tool",
+                        "tool_call_id": tool_call.id,
+                        "name": function_name,
+                        "content": json.dumps(function_response)
+                    })
+            else:
+                # If no function call, we're done
+                break
+                
+        return self.message_list
 
     def process_scenario(self, scenario: str, existing_plan: Optional[Plan] = None) -> List[Dict]:
         """Process a scenario with optional pre-generated plan."""
