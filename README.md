@@ -46,6 +46,7 @@ Edit .env with your OpenAI API key
 - **Business Functions**: Extensible set of operations for order processing
 
 ## 🔧 Usage Examples
+- After you've setup your .env file, just run src/order_fulfillment/main.py
 
 ### Running Comprehensive Experiments
 
