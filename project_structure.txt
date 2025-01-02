@@ -1,0 +1,28 @@
+order-fulfillment/
+├── src/
+│   ├── __init__.py
+│   ├── prototype/
+│   │   ├── __init__.py
+│   │   ├── helper.py
+│   │   ├── order_fulfillment.py
+│   │   └── utils.py
+│   └── order_fulfillment/
+│       ├── __init__.py
+│       ├── config.py             # Model and prompt configurations
+│       ├── context.py            # Context management
+│       ├── executor.py           # Execution engine
+│       ├── functions.py          # Business functions
+│       ├── helper.py             # Environment utilities
+│       ├── main.py              # Entry point and experiment runner
+│       ├── plans.py             # Plan generation and management
+│       ├── registry.py          # Function registry
+│       ├── scenarios.py         # Scenario definitions
+│       └── utils.py             # Output and formatting
+├── run_results/
+│   └── plans/                   # Stored plans
+│       ├── basic_plan.json
+│       ├── low_inventory_plan.json
+│       └── supplier_optimization_plan.json
+├── LICENSE                      # MIT License
+├── README.md                    # Project documentation
+└── project_structure.txt        # This file
